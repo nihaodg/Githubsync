@@ -256,9 +256,8 @@ func (a *App) Clone(repoURL, name string) (*CloneResult, error) {
 	}
 
 	_, err := git.PlainClone(localPath, false, &git.CloneOptions{
-		URL:      parsedURL,
-		Auth:     auth,
-		Progress: os.Stdout,
+		URL:  parsedURL,
+		Auth: auth,
 	})
 	if err != nil {
 		result.Error = err.Error()
@@ -369,8 +368,7 @@ func (a *App) Pull(repoPath string) error {
 	}
 
 	return workTree.Pull(&git.PullOptions{
-		Auth:     auth,
-		Progress: os.Stdout,
+		Auth: auth,
 	})
 }
 
@@ -386,8 +384,7 @@ func (a *App) Push(repoPath string) error {
 	}
 
 	return repo.Push(&git.PushOptions{
-		Auth:     auth,
-		Progress: os.Stdout,
+		Auth: auth,
 	})
 }
 
