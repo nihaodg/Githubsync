@@ -1,0 +1,364 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+  background: #1a1a2e;
+  color: #eaeaea;
+}
+
+.app {
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.config-panel {
+  max-width: 500px;
+  margin: 100px auto;
+  padding: 40px;
+  background: #16213e;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.config-panel h1 {
+  margin-bottom: 10px;
+  color: #e94560;
+}
+
+.config-panel p {
+  margin-bottom: 20px;
+  color: #888;
+}
+
+.config-panel a {
+  display: inline-block;
+  margin-bottom: 30px;
+  color: #00d9ff;
+  text-decoration: none;
+}
+
+.form-group {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  color: #aaa;
+  font-size: 14px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 12px;
+  background: #0f3460;
+  border: 1px solid #e94560;
+  border-radius: 6px;
+  color: #fff;
+  font-size: 14px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background: #16213e;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.header h1 {
+  color: #e94560;
+  font-size: 24px;
+}
+
+.header span {
+  color: #888;
+}
+
+.success-message {
+  padding: 10px 20px;
+  background: #00d9ff20;
+  border: 1px solid #00d9ff;
+  border-radius: 6px;
+  color: #00d9ff;
+  margin-bottom: 20px;
+}
+
+.error {
+  padding: 10px 20px;
+  background: #e9456020;
+  border: 1px solid #e94560;
+  border-radius: 6px;
+  color: #e94560;
+  margin-bottom: 20px;
+}
+
+.main-content {
+  display: grid;
+  grid-template-columns: 350px 1fr;
+  gap: 20px;
+  height: calc(100vh - 120px);
+}
+
+.left-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.clone-section {
+  padding: 20px;
+  background: #16213e;
+  border-radius: 8px;
+}
+
+.clone-section h3 {
+  margin-bottom: 15px;
+  color: #e94560;
+}
+
+.clone-section input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  background: #0f3460;
+  border: 1px solid #333;
+  border-radius: 6px;
+  color: #fff;
+}
+
+.clone-section input:focus {
+  outline: none;
+  border-color: #e94560;
+}
+
+.repos-section {
+  flex: 1;
+  padding: 20px;
+  background: #16213e;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.repos-section h3 {
+  margin-bottom: 15px;
+  color: #e94560;
+}
+
+.repo-list {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.repo-item {
+  padding: 12px;
+  margin-bottom: 8px;
+  background: #0f3460;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.repo-item:hover {
+  background: #1a4a7a;
+}
+
+.repo-item.selected {
+  background: #e9456040;
+  border: 1px solid #e94560;
+}
+
+.repo-name {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.repo-path {
+  display: block;
+  font-size: 12px;
+  color: #888;
+  word-break: break-all;
+}
+
+.right-panel {
+  padding: 20px;
+  background: #16213e;
+  border-radius: 8px;
+  overflow-y: auto;
+}
+
+.repo-info {
+  margin-bottom: 20px;
+}
+
+.repo-info h3 {
+  color: #e94560;
+  margin-bottom: 5px;
+}
+
+.repo-info p {
+  color: #888;
+  font-size: 14px;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.actions button {
+  flex: 1;
+  padding: 12px;
+  background: #0f3460;
+  border: 1px solid #333;
+  border-radius: 6px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+.actions button:hover {
+  background: #e94560;
+  border-color: #e94560;
+}
+
+.status-section,
+.commit-section,
+.log-section {
+  margin-bottom: 20px;
+}
+
+.status-section h4,
+.commit-section h4,
+.log-section h4 {
+  margin-bottom: 10px;
+  color: #00d9ff;
+}
+
+.file-list {
+  max-height: 200px;
+  overflow-y: auto;
+  background: #0f3460;
+  border-radius: 6px;
+  padding: 10px;
+}
+
+.file-item {
+  padding: 8px;
+  border-bottom: 1px solid #333;
+  font-size: 13px;
+}
+
+.file-item:last-child {
+  border-bottom: none;
+}
+
+.file-status {
+  margin-right: 10px;
+  color: #e94560;
+}
+
+.file-status.staged {
+  color: #00d9ff;
+}
+
+.file-status.modified {
+  color: #ff9f43;
+}
+
+.file-status.untracked {
+  color: #888;
+}
+
+.commit-section textarea {
+  width: 100%;
+  height: 80px;
+  padding: 12px;
+  margin-bottom: 10px;
+  background: #0f3460;
+  border: 1px solid #333;
+  border-radius: 6px;
+  color: #fff;
+  resize: none;
+}
+
+.commit-section textarea:focus {
+  outline: none;
+  border-color: #e94560;
+}
+
+.log-list {
+  max-height: 300px;
+  overflow-y: auto;
+  background: #0f3460;
+  border-radius: 6px;
+  padding: 10px;
+}
+
+.log-item {
+  padding: 10px;
+  border-bottom: 1px solid #333;
+  font-size: 13px;
+}
+
+.log-item:last-child {
+  border-bottom: none;
+}
+
+.log-sha {
+  font-family: monospace;
+  color: #00d9ff;
+  margin-right: 10px;
+}
+
+.log-msg {
+  display: block;
+  margin: 5px 0;
+  color: #fff;
+}
+
+.log-author {
+  font-size: 12px;
+  color: #888;
+}
+
+.btn-primary {
+  width: 100%;
+  padding: 12px;
+  background: #e94560;
+  border: none;
+  border-radius: 6px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.2s;
+}
+
+.btn-primary:hover {
+  background: #d63850;
+}
+
+.btn-primary:disabled {
+  background: #555;
+  cursor: not-allowed;
+}
+
+.no-repo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: #888;
+}
