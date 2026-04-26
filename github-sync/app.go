@@ -218,20 +218,35 @@ func (a *App) Clone(repoURL, name string) (*CloneResult, error) {
 	result := &CloneResult{Success: false}
 
 	if a.token == "" {
-		result.Error = "please configure GitHub token first"
+		result.Error = "请先配置 GitHub Token"
 		return result, fmt.Errorf(result.Error)
 	}
 
-	localPath := filepath.Join(a.storagePath, name)
+	// 判断 name 是否为完整路径
+	var localPath string
+	if filepath.IsAbs(name) || (len(name) > 1 && name[1] == ':') {
+		// name 是完整路径（如 C:\xxx 或 D:\xxx），直接使用
+		localPath = name
+	} else {
+		// name 只是文件夹名，拼接到 storagePath
+		localPath = filepath.Join(a.storagePath, name)
+	}
+
+	// 检查目录是否存在
+	if _, err := os.Stat(filepath.Dir(localPath)); os.IsNotExist(err) {
+		// 确保父目录存在
+		os.MkdirAll(filepath.Dir(localPath), 0755)
+	}
+
 	if _, err := os.Stat(localPath); err == nil {
-		result.Error = "repository already exists locally"
+		result.Error = "仓库已存在"
 		result.LocalPath = localPath
 		return result, fmt.Errorf(result.Error)
 	}
 
 	parsedURL := convertToHttpsUrl(repoURL)
 	if parsedURL == "" {
-		result.Error = "invalid GitHub URL"
+		result.Error = "无效的 GitHub URL"
 		return result, fmt.Errorf(result.Error)
 	}
 
